@@ -4,7 +4,7 @@ import "./../styles/alarm.sass";
 const AlarmSettings = ({ change, mins, secs, click, reset }) => {
   return (
     <div className="settings">
-      <p>min:</p>{" "}
+      <p>min's:</p>{" "}
       <button onClick={() => change("min", "sub")} className="formBtn">
         -
       </button>
@@ -12,7 +12,7 @@ const AlarmSettings = ({ change, mins, secs, click, reset }) => {
       <button onClick={() => change("min", "add")} className="formBtn">
         +
       </button>
-      <p>sec:</p>{" "}
+      <p>sec's:</p>{" "}
       <button onClick={() => change("sec", "sub")} className="formBtn">
         -
       </button>
