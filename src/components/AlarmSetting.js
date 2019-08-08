@@ -3,32 +3,30 @@ import "./../styles/alarm.sass";
 
 const AlarmSettings = ({ change, mins, secs, click, reset }) => {
   return (
-    <form className="form">
-      <label htmlFor="min">min:</label>
-      <input
-        type="number"
-        name="quantity"
-        min="0"
-        max="59"
-        value={mins}
-        onChange={e => change(e, "min")}
-        id="min"
-      />
-      <label htmlFor="sec">sec:</label>
-      <input
-        type="number"
-        name="quantity"
-        min="0"
-        max="59"
-        value={secs}
-        onChange={e => change(e, "sec")}
-        id="sec"
-      />
-      <button type="submit" onClick={click}>
+    <div className="settings">
+      <p>min:</p>{" "}
+      <button onClick={() => change("min", "sub")} className="formBtn">
+        -
+      </button>
+      <p className="number">{mins}</p>
+      <button onClick={() => change("min", "add")} className="formBtn">
+        +
+      </button>
+      <p>sec:</p>{" "}
+      <button onClick={() => change("sec", "sub")} className="formBtn">
+        -
+      </button>
+      <p className="number">{secs}</p>
+      <button onClick={() => change("sec", "add")} className="formBtn">
+        +
+      </button>
+      <button onClick={click} className="submit">
         Set Alarm
       </button>
-      <button onClick={reset}>reset</button>
-    </form>
+      <button onClick={reset} className="submit">
+        reset
+      </button>
+    </div>
   );
 };
 
