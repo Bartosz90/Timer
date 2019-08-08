@@ -3,6 +3,8 @@ import "./../styles/timer.sass";
 import AlarmSetting from "./AlarmSetting";
 import Speaker from "./Speaker";
 import sound from "../audio/alarm.mp3";
+import Alarm from "./Alarm";
+import Alert from "./Alert";
 
 class TimerApp extends Component {
   state = {
@@ -10,7 +12,11 @@ class TimerApp extends Component {
     minutes: 0,
     alarmMins: 0,
     alarmSecs: 0,
-    alarm: false
+    soundOn: false,
+    alarmSet: false,
+    alarmCounterMins: 0,
+    alarmCounterSecs: 0,
+    alarmSetAlert: false
   };
 
   componentDidUpdate() {
@@ -54,15 +60,75 @@ class TimerApp extends Component {
 
   handleAlarm = e => {
     e.preventDefault();
-    console.log("klik");
+
+    if (this.state.alarmSet) {
+      this.setState({
+        alarmSetAlert: true
+      });
+      return;
+    }
+
+    const alarmTime =
+      this.state.alarmMins * 60000 + this.state.alarmSecs * 1000;
+    this.setState({
+      alarmCounterMins: this.state.alarmMins,
+      alarmCounterSecs: this.state.alarmSecs,
+      alarmMins: 0,
+      alarmSecs: 0,
+      alarmSet: true
+    });
+    const counter = setInterval(() => {
+      if (this.state.alarmCounterSecs > 0) {
+        this.setState({
+          alarmCounterSecs: this.state.alarmCounterSecs - 1
+        });
+      } else if (
+        this.state.alarmCounterSecs === 0 &&
+        this.state.alarmCounterMins !== 0
+      ) {
+        this.setState({
+          alarmCounterSecs: 59,
+          alarmCounterMins: this.state.alarmCounterMins - 1
+        });
+      } else {
+        this.setState({
+          alarmCounterSecs: 0,
+          alarmCounterMins: 0
+        });
+        clearInterval(counter);
+      }
+    }, 1000);
+    setTimeout(() => {
+      this.setState({ soundOn: true });
+    }, alarmTime);
   };
 
-  playAlarm = () => {
+  stopAlarm = () => {
+    if (this.state.soundOn) {
+      this.setState({
+        soundOn: false,
+        alarmSet: false
+      });
+    }
+  };
+
+  resetAlarmCounter = e => {
+    e.preventDefault();
     this.setState({
-      alarm: !this.state.alarm
+      alarmMins: 0,
+      alarmSecs: 0,
+      soundOn: false,
+      alarmSet: false,
+      alarmCounterMins: 0,
+      alarmCounterSecs: 0
     });
   };
 
+  handleAlertRemove = () => {
+    this.setState({
+      alarmSetAlert: false
+    });
+  };
   render() {
     return (
       <>
@@ -82,8 +148,21 @@ class TimerApp extends Component {
           secs={this.state.alarmSecs}
           mins={this.state.alarmMins}
           click={this.handleAlarm}
+          reset={this.resetAlarmCounter}
         />
-        <Speaker sound={sound} click={this.playAlarm} play={this.state.alarm} />
+        <Speaker
+          sound={sound}
+          click={this.stopAlarm}
+          soundOn={this.state.soundOn}
+        />
+        {this.state.alarmSet && (
+          <Alarm
+            mins={this.state.alarmCounterMins}
+            secs={this.state.alarmCounterSecs}
+            soundOn={this.state.soundOn}
+          />
+        )}
+        {this.state.alarmSetAlert && <Alert click={this.handleAlertRemove} />}
       </>
     );
   }
