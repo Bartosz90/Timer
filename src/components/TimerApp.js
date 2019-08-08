@@ -10,6 +10,7 @@ class TimerApp extends Component {
   state = {
     seconds: 0,
     minutes: 0,
+    hours: 0,
     alarmMins: 0,
     alarmSecs: 0,
     soundOn: false,
@@ -27,6 +28,12 @@ class TimerApp extends Component {
         minutes: this.state.minutes + 1
       });
     }
+    if (this.state.minutes >= 60) {
+      this.setState({
+        minutes: 0,
+        hours: this.state.hours + 1
+      });
+    }
   }
 
   handleTimer = action => {
@@ -42,7 +49,8 @@ class TimerApp extends Component {
       clearInterval(this.counter);
       this.setState({
         seconds: 0,
-        minutes: 0
+        minutes: 0,
+        hours: 0
       });
     }
   };
@@ -171,12 +179,25 @@ class TimerApp extends Component {
     return (
       <>
         <div className="container">
-          <h1>
-            0{this.state.minutes} :{" "}
-            {this.state.seconds >= 10
-              ? this.state.seconds
-              : "0" + this.state.seconds}
-          </h1>
+          <div className="timer">
+            <h1>
+              {this.state.hours >= 10
+                ? this.state.hours
+                : "0" + this.state.hours}{" "}
+            </h1>{" "}
+            :
+            <h1>
+              {this.state.minutes >= 10
+                ? this.state.minutes
+                : "0" + this.state.minutes}
+            </h1>
+            :{" "}
+            <h1>
+              {this.state.seconds >= 10
+                ? this.state.seconds
+                : "0" + this.state.seconds}
+            </h1>
+          </div>
           <button onClick={() => this.handleTimer("start")}>start</button>
           <button onClick={() => this.handleTimer("stop")}>stop</button>
           <button onClick={() => this.handleTimer("reset")}>reset</button>
