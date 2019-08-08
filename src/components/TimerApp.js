@@ -11,6 +11,7 @@ class TimerApp extends Component {
     seconds: 0,
     minutes: 0,
     hours: 0,
+    timerRunning: false,
     alarmMins: 0,
     alarmSecs: 0,
     soundOn: false,
@@ -34,13 +35,25 @@ class TimerApp extends Component {
         hours: this.state.hours + 1
       });
     }
+    if (this.state.timerRunning) {
+      window.document.title = `${
+        this.state.hours >= 10 ? this.state.hours : "0" + this.state.hours
+      } : ${
+        this.state.minutes >= 10 ? this.state.minutes : "0" + this.state.minutes
+      } : ${
+        this.state.seconds >= 10 ? this.state.seconds : "0" + this.state.seconds
+      }`;
+    } else {
+      window.document.title = `Timer`;
+    }
   }
 
   handleTimer = action => {
     if (action === "start") {
       this.counter = setInterval(() => {
         this.setState({
-          seconds: this.state.seconds + 1
+          seconds: this.state.seconds + 1,
+          timerRunning: true
         });
       }, 1000);
     } else if (action === "stop") {
@@ -50,7 +63,8 @@ class TimerApp extends Component {
       this.setState({
         seconds: 0,
         minutes: 0,
-        hours: 0
+        hours: 0,
+        timerRunning: false
       });
     }
   };
