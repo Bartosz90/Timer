@@ -1,0 +1,35 @@
+@import "../index.sass"
+=buttons()
+    margin-right: 10px
+    padding: 6px 10px
+    transition: .3s linear
+    text-transform: uppercase 
+    letter-spacing: 1px
+    font-weight: bold
+    font-size: 16px
+    background-color: #fff
+    border: 2px solid $dark
+    border-radius: 8px
+    cursor: pointer
+    &:hover 
+        background-color: $dark
+        color: #fff 
+        border: 2px solid #fff
+.container  
+    width: 100vw 
+    height: 100vh 
+    display: flex 
+    justify-content: center 
+    align-items: center
+    flex-wrap: wrap
+    align-content: center
+    overflow: hidden
+    h1 
+        width: 100%
+        margin-bottom: 10px
+        font-size: 60px
+        text-align: center
+    button 
+        +buttons()
+        
+
