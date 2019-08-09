@@ -4,22 +4,31 @@ import "./../styles/alarm.sass";
 const AlarmSettings = ({ change, mins, secs, click, reset }) => {
   return (
     <div className="settings">
-      <p>min's:</p>{" "}
-      <button onClick={() => change("min", "sub")} className="formBtn">
-        -
-      </button>
-      <p className="number">{mins}</p>
-      <button onClick={() => change("min", "add")} className="formBtn">
-        +
-      </button>
-      <p>sec's:</p>{" "}
-      <button onClick={() => change("sec", "sub")} className="formBtn">
-        -
-      </button>
-      <p className="number">{secs}</p>
-      <button onClick={() => change("sec", "add")} className="formBtn">
-        +
-      </button>
+      <div className="min">
+        <p className="unit">min's:</p> <p className="number">{mins}</p>
+        <button onClick={() => change("min", "sub")} className="formBtn">
+          -1
+        </button>
+        <button onClick={() => change("min", "add")} className="formBtn">
+          +1
+        </button>{" "}
+        <button onClick={() => change("min", "add10")} className="formBtn">
+          +10
+        </button>
+      </div>
+      <div className="sec">
+        <p className="unit">sec's:</p> <p className="number">{secs}</p>
+        <button onClick={() => change("sec", "sub")} className="formBtn">
+          -1
+        </button>
+        <button onClick={() => change("sec", "add")} className="formBtn">
+          +1
+        </button>
+        <button onClick={() => change("sec", "add10")} className="formBtn">
+          +10
+        </button>
+      </div>
+
       <button onClick={click} className="submit">
         Set Alarm
       </button>

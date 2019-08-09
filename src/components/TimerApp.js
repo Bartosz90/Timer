@@ -90,10 +90,24 @@ class TimerApp extends Component {
       });
       return;
     }
+    if (
+      (type === "min" && this.state.alarmMins >= 50 && action === "add10") ||
+      (type === "sec" && this.state.alarmSecs >= 50 && action === "add10")
+    ) {
+      this.setState({
+        alert: { head: "Alert!", content: "Range is 0-59" },
+        alarmSetAlert: true
+      });
+      return;
+    }
     if (type === "min") {
       if (action === "sub") {
         this.setState({
           alarmMins: this.state.alarmMins - 1
+        });
+      } else if (action === "add10") {
+        this.setState({
+          alarmMins: this.state.alarmMins + 10
         });
       } else {
         this.setState({
@@ -104,6 +118,10 @@ class TimerApp extends Component {
       if (action === "sub") {
         this.setState({
           alarmSecs: this.state.alarmSecs - 1
+        });
+      } else if (action === "add10") {
+        this.setState({
+          alarmSecs: this.state.alarmSecs + 10
         });
       } else {
         this.setState({
