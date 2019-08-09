@@ -39,10 +39,16 @@
     .submit
         width: 34%
         margin-top: 10px
-        @media (max-width: 420px)
-            width: 45%
         @media (max-width: 900px)
             margin-top: 2px
+        @media (max-width: 420px)
+            width: 45%
+        
+    .submit:nth-of-type(2)
+        border: 2px solid red 
+        @keyframes alert 
+            100% 
+                background-color: red
     button 
         +buttons()
         margin: 0 5px

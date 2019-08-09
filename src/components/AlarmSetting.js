@@ -1,7 +1,7 @@
 import React from "react";
 import "./../styles/alarm.sass";
 
-const AlarmSettings = ({ change, mins, secs, click, reset }) => {
+const AlarmSettings = ({ change, mins, secs, click, reset, soundOn }) => {
   return (
     <div className="settings">
       <div className="min">
@@ -32,7 +32,13 @@ const AlarmSettings = ({ change, mins, secs, click, reset }) => {
       <button onClick={click} className="submit">
         Set Alarm
       </button>
-      <button onClick={reset} className="submit">
+      <button
+        onClick={reset}
+        className="submit"
+        style={{
+          animation: `${soundOn ? "alert .5s linear infinite" : "none"}`
+        }}
+      >
         reset
       </button>
     </div>

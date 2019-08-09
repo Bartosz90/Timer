@@ -232,7 +232,9 @@ class TimerApp extends Component {
           </div>
           <button onClick={() => this.handleTimer("start")}>start</button>
           <button onClick={() => this.handleTimer("stop")}>stop</button>
-          <button onClick={() => this.handleTimer("reset")}>reset</button>
+          <button onClick={() => this.handleTimer("reset")} className="reset">
+            reset
+          </button>
         </div>
         <AlarmSetting
           change={this.handleAlarmSetting}
@@ -240,6 +242,7 @@ class TimerApp extends Component {
           mins={this.state.alarmMins}
           click={this.handleAlarm}
           reset={this.resetAlarmCounter}
+          soundOn={this.state.soundOn}
         />
         <Speaker
           sound={sound}
