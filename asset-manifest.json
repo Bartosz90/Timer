@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Timer/static/css/main.993806e9.chunk.css",
+    "main.css": "/Timer/static/css/main.f785eb24.chunk.css",
     "main.js": "/Timer/static/js/main.b065a7c7.chunk.js",
     "main.js.map": "/Timer/static/js/main.b065a7c7.chunk.js.map",
     "runtime~main.js": "/Timer/static/js/runtime~main.b0c89b5a.js",
@@ -8,9 +8,9 @@
     "static/js/2.8fa3d35f.chunk.js": "/Timer/static/js/2.8fa3d35f.chunk.js",
     "static/js/2.8fa3d35f.chunk.js.map": "/Timer/static/js/2.8fa3d35f.chunk.js.map",
     "index.html": "/Timer/index.html",
-    "precache-manifest.9d818733175bf802f52bb67121ed6535.js": "/Timer/precache-manifest.9d818733175bf802f52bb67121ed6535.js",
+    "precache-manifest.2544852f3cd2ccf331bea89544cd21fa.js": "/Timer/precache-manifest.2544852f3cd2ccf331bea89544cd21fa.js",
     "service-worker.js": "/Timer/service-worker.js",
-    "static/css/main.993806e9.chunk.css.map": "/Timer/static/css/main.993806e9.chunk.css.map",
+    "static/css/main.f785eb24.chunk.css.map": "/Timer/static/css/main.f785eb24.chunk.css.map",
     "static/media/alarm.mp3": "/Timer/static/media/alarm.87dc6e28.mp3"
   }
 }
