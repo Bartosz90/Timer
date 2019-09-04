@@ -50,14 +50,17 @@ class TimerApp extends Component {
 
   handleTimer = action => {
     if (action === "start") {
-      this.counter = setInterval(() => {
-        this.setState({
-          seconds: this.state.seconds + 1,
-          timerRunning: true
-        });
-      }, 1000);
+      if (this.state.timerRunning === false) {
+        this.counter = setInterval(() => {
+          this.setState({
+            seconds: this.state.seconds + 1,
+            timerRunning: true
+          });
+        }, 1000);
+      }
     } else if (action === "stop") {
       clearInterval(this.counter);
+      this.setState({ timerRunning: false });
     } else {
       clearInterval(this.counter);
       this.setState({
